@@ -19,12 +19,6 @@ if (isset($_POST['first_name'],$_POST['last_name'])){
 }
 
 
-
-
-
-
-
-
 ?>
 
 
