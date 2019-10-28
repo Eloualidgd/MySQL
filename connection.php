@@ -16,6 +16,9 @@ function openConnection() {
     return $pdo;
 }
 
+$connection = openConnection();
+// esta variable tambien la pido en el index
+
 
 //"SELECT first_name FROM table student";
 

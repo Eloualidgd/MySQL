@@ -1,19 +1,49 @@
-
-
 <?php
 require "connection.php";
 
-if (isset($_POST['first_name'],$_POST['last_name'])){
+if (isset($_POST['first_name'],$_POST['last_name'],$_POST['username'],$_POST['gender'],$_POST['linkedin'],
+    $_POST['github'],$_POST['email'],$_POST['preferred_language'], $_POST['avatar'],$_POST['video'],
+    $_POST['quote'],$_POST['quote_author'],$_POST['created_at'])){
 
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
- echo $first_name;
+    $username = $_POST['username'];
+    $gender = $_POST['gender'];
+    $linkedin = $_POST['linkedin'];
+    $github = $_POST['github'];
+    $email = $_POST['email'];
+    $preferred_language = $_POST['preferred_language'];
+    $avatar = $_POST['avatar'];
+    $video = $_POST['video'];
+    $quote = $_POST['quote'];
+    $quote_author = $_POST['quote_author'];
+    $created_at = $_POST['created_at'];
+
+
+
+
+ //echo $first_name;
 
     //$conn = new student($first_name, $last_name);
-    $stmt = openConnection()->prepare("INSERT INTO student(first_name, last_name) VALUES (:first_name, :last_name)");
+    $stmt = openConnection()->prepare("INSERT INTO student (first_name, last_name, username, gender, linkedin,
+        github, email, preferred_language, avatar, video, quote, quote_author, created_at)
+    VALUES (:first_name, :last_name, :username, :gender, :linkedin, :github, :email, :preferred_language,
+        :avatar, :video, :quote, :quote_author, :created_at)");
 //$stmt->bind_param( $first_name, $last_name);
     $stmt->bindParam(':first_name', $first_name);
     $stmt->bindParam(':last_name', $last_name);
+    $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':gender', $gender);
+    $stmt->bindParam(':linkedin', $linkedin);
+    $stmt->bindParam(':github', $github);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':preferred_language', $preferred_language);
+    $stmt->bindParam(':avatar', $avatar);
+    $stmt->bindParam(':video', $video);
+    $stmt->bindParam(':quote', $quote);
+    $stmt->bindParam(':quote_author', $quote_author);
+    $stmt->bindParam(':created_at', $created_at);
+
     $stmt->execute();
 
 }
@@ -32,49 +62,50 @@ if (isset($_POST['first_name'],$_POST['last_name'])){
     <title>Document</title>
 </head>
 <body>
+<h1>Registration Form</h1>
 
-<form method="post">
+<form action="" method="post">
     First name:<br>
-    <input type="text" name="first_name" value="first_name">
+        <input type="text" name="first_name" placeholder="first name" required>
     <br>
     Last name:<br>
-    <input type="text" name="last_name" value="last_name">
+        <input type="text" name="last_name" placeholder="last name" required>
     <br>
     Username:<br>
-    <input type="text" name="username" value="username">
+        <input type="text" name="username" placeholder="username" required>
     <br>
     Gender:<br>
-    <input type="text" name="gender" value="gender">
+        <input type="text" name="gender" placeholder="gender" required>
     <br>
     Linkedin:<br>
-    <input type="text" name="linkedin" value="linkedin">
+        <input type="text" name="linkedin" placeholder="linkedin" required>
     <br>
     Github:<br>
-    <input type="text" name="github" value="github">
+        <input type="text" name="github" placeholder="github" required>
     <br>
     Email:<br>
-    <input type="text" name="email" value="email">
+        <input type="text" name="email" placeholder="email" required>
     <br>
     Preferred language:<br>
-    <input type="text" name="preferred_language" value="preferred_language">
+        <input type="text" name="preferred_language" placeholder="preferred language" required>
     <br>
     Avatar:<br>
-    <input type="text" name="avatar" value="avatar">
+        <input type="text" name="avatar" placeholder="avatar" required>
     <br>
     Video:<br>
-    <input type="text" name="video" value="video">
+        <input type="text" name="video" placeholder="video" required>
     <br>
     Quote:<br>
-    <input type="text" name="quote" value="quote">
+        <input type="text" name="quote" placeholder="quote" required>
     <br>
     Quote author:<br>
-    <input type="text" name="quote_author" value="quote_author">
+        <input type="text" name="quote_author" placeholder="quote author" required>
     <br>
     Created at:<br>
-    <input type="text" name="created_at" value="created_at">
+    <input type="text" name="created_at" placeholder="created at" required>
     <br>
     <br><br>
-    <input type="submit" value="Submit">
+        <input type="submit" name="send" value="send">
 </form>
 
 </body>
